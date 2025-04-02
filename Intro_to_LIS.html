@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Stefan Hochguertel">
+<meta name="dcterms.date" content="2025-04-02">
+
+<title>Introduction to Working with the Luxembourg Income Study</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Intro_to_LIS_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Intro_to_LIS_files/libs/quarto-html/quarto.js"></script>
+<script src="Intro_to_LIS_files/libs/quarto-html/popper.min.js"></script>
+<script src="Intro_to_LIS_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Intro_to_LIS_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Intro_to_LIS_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Intro_to_LIS_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Intro_to_LIS_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Intro_to_LIS_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Intro_to_LIS_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="Intro_to_LIS_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="Intro_to_LIS_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="Intro_to_LIS_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: black;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: black;
+background: #5085C7;
+      }
+</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-right">
+      <h1 class="title">Introduction to Working with the Luxembourg Income Study</h1>
+            <p class="subtitle lead"></p><div class="line-block">A Hands-on Guide for Users<br>
+<br>
+Economics Theses • Vrije Universiteit Amsterdam</div><p></p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-right">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Stefan Hochguertel </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 2, 2025</p>
+      </div>
+    </div>
+    
+      <div>
+      <div class="quarto-title-meta-heading">Modified</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date-modified">April 2, 2025</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  <div>
+    <div class="abstract">
+      <div class="block-title">Abstract</div>
+      <p>This document gives a brief overview of LIS/LWS data and includes hands-on walkthrough of sample code. Main source: lisdatacenter.org website</p>
+    </div>
+  </div>
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-full toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="1">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#sec-lis" id="toc-sec-lis" class="nav-link active" data-scroll-target="#sec-lis"><span class="header-section-number">1</span> The Luxembourg Income Study</a>
+  <ul class="collapse">
+  <li><a href="#purpose-and-content" id="toc-purpose-and-content" class="nav-link" data-scroll-target="#purpose-and-content"><span class="header-section-number">1.1</span> Purpose and Content</a>
+  <ul class="collapse">
+  <li><a href="#mission" id="toc-mission" class="nav-link" data-scroll-target="#mission"><span class="header-section-number">1.1.1</span> Mission</a></li>
+  <li><a href="#coverage" id="toc-coverage" class="nav-link" data-scroll-target="#coverage"><span class="header-section-number">1.1.2</span> Coverage</a></li>
+  </ul></li>
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview"><span class="header-section-number">1.2</span> Data Overview</a>
+  <ul class="collapse">
+  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website"><span class="header-section-number">1.2.1</span> Website</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources"><span class="header-section-number">1.2.2</span> Sources</a></li>
+  <li><a href="#all-countries" id="toc-all-countries" class="nav-link" data-scroll-target="#all-countries"><span class="header-section-number">1.2.3</span> All Countries</a></li>
+  <li><a href="#lis" id="toc-lis" class="nav-link" data-scroll-target="#lis"><span class="header-section-number">1.2.4</span> LIS</a></li>
+  <li><a href="#lws" id="toc-lws" class="nav-link" data-scroll-target="#lws"><span class="header-section-number">1.2.5</span> LWS</a></li>
+  <li><a href="#erf-lis" id="toc-erf-lis" class="nav-link" data-scroll-target="#erf-lis"><span class="header-section-number">1.2.6</span> ERF-LIS</a></li>
+  </ul></li>
+  <li><a href="#information-pages" id="toc-information-pages" class="nav-link" data-scroll-target="#information-pages"><span class="header-section-number">1.3</span> Information Pages</a>
+  <ul class="collapse">
+  <li><a href="#sec-dart" id="toc-sec-dart" class="nav-link" data-scroll-target="#sec-dart"><span class="header-section-number">1.3.1</span> DART</a></li>
+  <li><a href="#sec-compareit" id="toc-sec-compareit" class="nav-link" data-scroll-target="#sec-compareit"><span class="header-section-number">1.3.2</span> COMPARE.IT</a></li>
+  <li><a href="#sec-metis" id="toc-sec-metis" class="nav-link" data-scroll-target="#sec-metis"><span class="header-section-number">1.3.3</span> METIS</a></li>
+  </ul></li>
+  <li><a href="#sec-analysis" id="toc-sec-analysis" class="nav-link" data-scroll-target="#sec-analysis"><span class="header-section-number">1.4</span> Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-scope" id="toc-data-scope" class="nav-link" data-scroll-target="#data-scope"><span class="header-section-number">1.4.1</span> Data Scope</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">1.4.2</span> Data Analysis</a></li>
+  <li><a href="#sample-session" id="toc-sample-session" class="nav-link" data-scroll-target="#sample-session"><span class="header-section-number">1.4.3</span> Sample Session</a></li>
+  <li><a href="#sample-code-and-output-1" id="toc-sample-code-and-output-1" class="nav-link" data-scroll-target="#sample-code-and-output-1"><span class="header-section-number">1.4.4</span> Sample Code and Output 1</a></li>
+  <li><a href="#sample-code-and-output-2" id="toc-sample-code-and-output-2" class="nav-link" data-scroll-target="#sample-code-and-output-2"><span class="header-section-number">1.4.5</span> Sample Code and Output 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-lissy" id="toc-sec-lissy" class="nav-link" data-scroll-target="#sec-lissy"><span class="header-section-number">2</span> LISSY</a>
+  <ul class="collapse">
+  <li><a href="#session-workflow" id="toc-session-workflow" class="nav-link" data-scroll-target="#session-workflow"><span class="header-section-number">2.1</span> Session Workflow</a></li>
+  <li><a href="#sample-sessions" id="toc-sample-sessions" class="nav-link" data-scroll-target="#sample-sessions"><span class="header-section-number">2.2</span> Sample Sessions</a>
+  <ul class="collapse">
+  <li><a href="#r" id="toc-r" class="nav-link" data-scroll-target="#r"><span class="header-section-number">2.2.1</span> R</a></li>
+  <li><a href="#stata" id="toc-stata" class="nav-link" data-scroll-target="#stata"><span class="header-section-number">2.2.2</span> STATA</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#country-listing" id="toc-country-listing" class="nav-link" data-scroll-target="#country-listing">Country Listing</a>
+  <ul class="collapse">
+  
+  
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content quarto-banner-title-block column-page-right" id="quarto-document-content">
+
+
+
+
+
+<style>
+.flushright {
+   text-align: right;
+}
+</style>
+<!-- SECTION ********************************************************** -->
+<section id="sec-lis" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> The Luxembourg Income Study</h1>
+<!-- SECTION ********************************************************** -->
+<!-- SubSection........................................................ -->
+<section id="purpose-and-content" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="purpose-and-content"><span class="header-section-number">1.1</span> Purpose and Content</h2>
+<!-- SubSection........................................................ -->
+<section id="mission" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="mission"><span class="header-section-number">1.1.1</span> Mission</h3>
+<ul>
+<li>enable cross-national comparative research on socio-economic outcomes and underlying institutional factors (e.g.&nbsp;tax and transfer system)</li>
+<li>academic guidance by prominent economics and other social scientist scholars</li>
+<li>director: Prof.&nbsp;Peter Lanjouw (VU)</li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+<section id="coverage" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="coverage"><span class="header-section-number">1.1.2</span> Coverage</h3>
+<ul>
+<li>micro data on income, wealth, and consumption</li>
+<li>on household or individual level</li>
+<li>harmonized data definitions across time and space</li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+</section>
+<section id="data-overview" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="data-overview"><span class="header-section-number">1.2</span> Data Overview</h2>
+<section id="website" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="website"><span class="header-section-number">1.2.1</span> Website</h3>
+<iframe width="980" height="400" src="https://www.lisdatacenter.org/our-data/" title="LIS Data Center"></iframe>
+<p><em>Source:</em> <a href="https://www.lisdatacenter.org/our-data/">LIS Data Center</a></p>
+</section>
+<section id="sources" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="sources"><span class="header-section-number">1.2.2</span> Sources</h3>
+<ul>
+<li>existing country-specific micro data surveys and (samples of) administrative tax records</li>
+<li>e.g., <a href="https://ec.europa.eu/eurostat/web/microdata/european-union-statistics-on-income-and-living-conditions">EU-SILC</a>, <a href="https://ec.europa.eu/eurostat/web/microdata/european-community-household-panel">ECHP</a>; FES/<a href="https://www.gov.uk/government/collections/family-resources-survey--2">FRS</a>; <a href="https://www.diw.de/en/soep">GSOEP</a>; <a href="https://www.census.gov/programs-surveys/cps.html">CPS</a>; <a href="https://www.federalreserve.gov/econres/scfindex.htm">SCF</a></li>
+<li>harmonization according to common template</li>
+<li>waves: annualization</li>
+<li>sampling weights</li>
+</ul>
+<p><strong>EXAMPLE</strong></p>
+<table class="table-striped table-hover caption-top table">
+<caption>LIS Sources Netherlands</caption>
+<thead>
+<tr class="header">
+<th>Period</th>
+<th>Source Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1983–1990</td>
+<td>AVO: Amenities and Services Utilization Survey</td>
+</tr>
+<tr class="even">
+<td>1993–1999</td>
+<td>SEP: Socio-Economic Panel Survey</td>
+</tr>
+<tr class="odd">
+<td>2004–2021</td>
+<td>SILC Survey on Income and Living Conditions</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>issue: structural breaks, see <a href="#sec-compareit" class="quarto-xref">Section&nbsp;1.3.2</a></li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+<section id="all-countries" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="all-countries"><span class="header-section-number">1.2.3</span> All Countries</h3>
+<ul>
+<li>3 data bases: LIS, LWS, ERF-LIS</li>
+<li>1063 cross sectional data sets from 58 countries (<a href="#tbl-CountryTable" class="quarto-xref">Table&nbsp;1</a>)</li>
+<li>varying sample sizes (mostly, several 000)</li>
+<li>covering 21/27 EU countries and 33/38 OECD countries</li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+<section id="lis" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="lis"><span class="header-section-number">1.2.4</span> LIS</h3>
+<ul>
+<li>921 data sets from 53 countries (<a href="#fig-LISDataoverview" class="quarto-xref">Figure&nbsp;2</a>)</li>
+<li>average # years per country: 17.5 (but often gaps)</li>
+<li>some countries’ data span 5 or more decades
+<ul>
+<li>US: 61 years (1963-2023)</li>
+<li>UK: 48 years (1968-2021)</li>
+<li>CA: 45 years (1971-2021)</li>
+</ul></li>
+<li>longest consecutive time series of cross sections
+<ul>
+<li>US: 61 years (1963-2023)</li>
+<li>UK: 46 years (1976-2021)</li>
+<li>DE: 41 years (1983-2020)</li>
+</ul></li>
+<li>household and individual income files</li>
+<li>often before and after taxes and transfers</li>
+<li>core demographics, education, labor and health</li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+<section id="lws" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="lws"><span class="header-section-number">1.2.5</span> LWS</h3>
+<ul>
+<li>113 data sets from 20 countries</li>
+<li>cross sections typically every 3-5 years</li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+<section id="erf-lis" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="erf-lis"><span class="header-section-number">1.2.6</span> ERF-LIS</h3>
+<ul>
+<li>29 data sets from 7 countries (typically middle-east and Africa)</li>
+<li>often singletons</li>
+</ul>
+<!-- SubSection........................................................ -->
+</section>
+</section>
+<section id="information-pages" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="information-pages"><span class="header-section-number">1.3</span> Information Pages</h2>
+<section id="sec-dart" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="sec-dart"><span class="header-section-number">1.3.1</span> DART</h3>
+<ul>
+<li>aggregate statistics based on underlying LIS micro data</li>
+<li>across-country and within-country</li>
+<li>visualizations
+<ul>
+<li>maps</li>
+<li>time series</li>
+<li>pdfs/Lorenz curves</li>
+<li>scatter plots correlating statistics</li>
+</ul></li>
+<li><a href="https://dart.lisdatacenter.org/">Website</a></li>
+</ul>
+</section>
+<section id="sec-compareit" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="sec-compareit"><span class="header-section-number">1.3.2</span> COMPARE.IT</h3>
+<ul>
+<li>within-country time-series of aggregate statistics based on underlying LIS micro data</li>
+<li>identify structural breaks</li>
+<li>macro/micro link: comparison to national accounts</li>
+<li><a href="https://comparability.lisdatacenter.org/shiny/comparability/">Website</a></li>
+</ul>
+</section>
+<section id="sec-metis" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="sec-metis"><span class="header-section-number">1.3.3</span> METIS</h3>
+<ul>
+<li>main documentation and detailed definitions of available
+<ul>
+<li>datasets</li>
+<li>variables</li>
+</ul></li>
+<li><a href="https://www.lisdatacenter.org/frontend#/home">Website</a></li>
+</ul>
+<!-- SECTION ********************************************************** -->
+</section>
+</section>
+<section id="sec-analysis" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sec-analysis"><span class="header-section-number">1.4</span> Data Analysis</h2>
+<!-- SECTION ********************************************************** -->
+<section id="data-scope" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="data-scope"><span class="header-section-number">1.4.1</span> Data Scope</h3>
+<section id="micro-data" class="level4" data-number="1.4.1.1">
+<h4 data-number="1.4.1.1" class="anchored" data-anchor-id="micro-data"><span class="header-section-number">1.4.1.1</span> Micro Data</h4>
+<ul>
+<li><p>LIS data sets are named <strong>nnyyt</strong> (e.g.&nbsp;“nl12h”) where</p>
+<ul>
+<li><strong>nn</strong> is ISO2 code of country, e.g., “nl” for Netherlands (<a href="#tbl-CountryTable" class="quarto-xref">Table&nbsp;1</a>)</li>
+<li><strong>yy</strong> is year, e.g., “12” for 2012</li>
+<li><strong>t</strong> is type, e.g.&nbsp;“h” for household level (or “i” for individual)</li>
+</ul></li>
+<li><p>LWS data sets are named <strong>nnyy</strong>w<strong>t</strong> where</p>
+<ul>
+<li>‘w’ is a fixed name component to differentiate it as LWS file from LIS files</li>
+<li><strong>t</strong> has values “h” (household), “p” (person), “r” (implicate; for multiple imputations)</li>
+</ul></li>
+<li><p>data sets are <span class="math inline">\(N\times K\)</span> matrices with <span class="math inline">\(N\)</span> records (one per row) and <span class="math inline">\(K\)</span> variables (one per column)</p></li>
+<li><p>analysis on household or individual level</p></li>
+<li><p>can append or combine data sets per country across years, or across countries, and combine household level data with invdividual level data</p></li>
+<li><p>no panel data, cannot follow individuals/households over time</p></li>
+<li><p>pseudo-panels: group-level analysis (follow birth cohorts, education groups, geographical subunits, etc. over time)</p></li>
+</ul>
+</section>
+<section id="variables" class="level4" data-number="1.4.1.2">
+<h4 data-number="1.4.1.2" class="anchored" data-anchor-id="variables"><span class="header-section-number">1.4.1.2</span> Variables</h4>
+<ul>
+<li>demographics (household relationships, family composition, marital status, number of children, sex, education, immigration status/country of origin, etc.)</li>
+<li>labor market variables (participation, labor supply, leave schemes, experience, occupation, industry and wages)</li>
+<li>health related variables (disability indication and health status)</li>
+<li>income concepts: household level / individual level</li>
+<li>income concepts: market or primary income / disposable net income / income by source (work, social benefits, pensions)</li>
+<li>LIS: aggregate consumption categories; ERFLIS: detailed consumption expenditure</li>
+<li>documentation
+<ul>
+<li><a href="https://www.lisdatacenter.org/wp-content/uploads/files/data-lis-variables.pdf">LIS data overview</a></li>
+<li>detail: <a href="#sec-metis" class="quarto-xref">Section&nbsp;1.3.3</a></li>
+</ul></li>
+<li><strong>Note:</strong>
+<ul>
+<li>not every country has all variables for every year (or variables may exist but have no content)</li>
+<li>some variables have country-specific content (typically _c)</li>
+</ul></li>
+</ul>
+</section>
+<section id="macro-data" class="level4" data-number="1.4.1.3">
+<h4 data-number="1.4.1.3" class="anchored" data-anchor-id="macro-data"><span class="header-section-number">1.4.1.3</span> Macro Data</h4>
+<ul>
+<li>LIS data servers also host additional data at an aggregate/macro level that can be directly linked
+<ul>
+<li><a href="https://www.lisdatacenter.org/resources/ppp-deflators/">CPI and PPP deflators</a></li>
+<li><a href="https://www.lisdatacenter.org/resources/other-databases/">Policy parameters</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="data-analysis" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="data-analysis"><span class="header-section-number">1.4.2</span> Data Analysis</h3>
+<section id="analysis-types" class="level4" data-number="1.4.2.1">
+<h4 data-number="1.4.2.1" class="anchored" data-anchor-id="analysis-types"><span class="header-section-number">1.4.2.1</span> Analysis Types</h4>
+<ul>
+<li>descriptive statistics, including graphical</li>
+<li>regression or other type of statistical modeling work (estimation and inference)</li>
+</ul>
+</section>
+<section id="remote-execution" class="level4" data-number="1.4.2.2">
+<h4 data-number="1.4.2.2" class="anchored" data-anchor-id="remote-execution"><span class="header-section-number">1.4.2.2</span> Remote Execution</h4>
+<ul>
+<li>write your code (saved on your device or drive)</li>
+<li>copy-paste it into the LISSY mask and submit the ‘job’</li>
+<li>job will be added to internal job-queue and executed when time is found to do so</li>
+<li>jobs have a unique job ID</li>
+<li>LISSY server sends back output
+<ul>
+<li>plain text (ASCII) job log, e.g.
+<ul>
+<li>summary tables</li>
+<li>regression tables</li>
+</ul></li>
+<li>image files for graphs (e.g., .png)</li>
+</ul></li>
+</ul>
+</section>
+<section id="hints-and-warnings" class="level4" data-number="1.4.2.3">
+<h4 data-number="1.4.2.3" class="anchored" data-anchor-id="hints-and-warnings"><span class="header-section-number">1.4.2.3</span> Hints and Warnings</h4>
+<ul>
+<li><strong>MUST NOT</strong> (try) to look at data records, e.g., <strong>NEVER</strong> view/list/print individual records or values</li>
+<li><strong>DO NOT</strong> resubmit a scheduled job before completion, wait until you receive output for your job ID</li>
+<li><strong>BREAK UP</strong> long programs into smaller code chunks, test them thoroughly</li>
+<li><strong>ECONOMIZE</strong> on number of data sets used simultaneously and/or number of variables and/or number of observations used</li>
+<li>see <a href="https://www.lisdatacenter.org/data-access/lissy/lissy-coding-best-practices/">LISSY Coding Best Practices</a> and <a href="https://www.lisdatacenter.org/data-access/lissy/managing-lissy-jobs-and-listings-faqs/">Managing LISSY Jobs and Listings – FAQs</a></li>
+<li>for international comparison, LIS recommends <a href="https://www.lisdatacenter.org/newsletter/nl-2020-15-im-4/">Top and Bottom Coding</a></li>
+</ul>
+</section>
+</section>
+<section id="sample-session" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="sample-session"><span class="header-section-number">1.4.3</span> Sample Session</h3>
+<section id="sample-data" class="level4" data-number="1.4.3.1">
+<h4 data-number="1.4.3.1" class="anchored" data-anchor-id="sample-data"><span class="header-section-number">1.4.3.1</span> Sample Data</h4>
+<ul>
+<li><a href="https://www.lisdatacenter.org/resources/self-teaching/">LIS Try-Out Data</a></li>
+<li>use for code testing and refinement on your own computer, before submitting jobs to the queue</li>
+</ul>
+</section>
+</section>
+<section id="sample-code-and-output-1" class="level3" data-number="1.4.4">
+<h3 data-number="1.4.4" class="anchored" data-anchor-id="sample-code-and-output-1"><span class="header-section-number">1.4.4</span> Sample Code and Output 1</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readstata13)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>it14ih <span class="ot">&lt;-</span> <span class="fu">read.dta13</span>(<span class="st">'datasets/it14ih.dta'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> it14ih <span class="sc">%&gt;%</span> <span class="fu">select</span>(dhi,hitotal,hifactor,hitransfer,hilabour,hicapital,hipension,hiprivate)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>it14ih1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(vars)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(it14ih1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>      dhi            hitotal          hifactor           hitransfer    
+ Min.   :     0   Min.   :     0   Min.   :     0.00   Min.   :     0  
+ 1st Qu.: 13234   1st Qu.: 15337   1st Qu.:    65.81   1st Qu.:     0  
+ Median : 20249   Median : 25253   Median :  6952.72   Median : 10494  
+ Mean   : 24934   Mean   : 32764   Mean   : 19325.49   Mean   : 13439  
+ 3rd Qu.: 32542   3rd Qu.: 42163   3rd Qu.: 28830.29   3rd Qu.: 21293  
+ Max.   :123001   Max.   :210613   Max.   :198739.22   Max.   :105444  
+    hilabour        hicapital          hipension        hiprivate    
+ Min.   :     0   Min.   :    0.00   Min.   :     0   Min.   :    0  
+ 1st Qu.:     0   1st Qu.:   12.21   1st Qu.:     0   1st Qu.:    0  
+ Median :  5606   Median :   60.22   Median : 10377   Median :    0  
+ Mean   : 18599   Mean   :  726.29   Mean   : 13198   Mean   :   67  
+ 3rd Qu.: 27884   3rd Qu.:  266.53   3rd Qu.: 21117   3rd Qu.:    0  
+ Max.   :197410   Max.   :68139.69   Max.   :105444   Max.   :24000  </code></pre>
+</div>
+</div>
+</section>
+<section id="sample-code-and-output-2" class="level3" data-number="1.4.5">
+<h3 data-number="1.4.5" class="anchored" data-anchor-id="sample-code-and-output-2"><span class="header-section-number">1.4.5</span> Sample Code and Output 2</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ineq)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>it14ih <span class="ot">&lt;-</span> <span class="fu">read.dta13</span>(<span class="st">'datasets/it14ih.dta'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>dhi <span class="ot">&lt;-</span> it14ih <span class="sc">%&gt;%</span> <span class="fu">select</span>(dhi)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>income <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dhi)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note: subsequent code generated with ChatGPT</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>lorenz_data <span class="ot">&lt;-</span> <span class="fu">Lc</span>(income<span class="sc">$</span>dhi)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>lorenz_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Population =</span> lorenz_data<span class="sc">$</span>p,  <span class="co"># Cumulative population share</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Income =</span> lorenz_data<span class="sc">$</span>L       <span class="co"># Cumulative income share</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lorenz_df, <span class="fu">aes</span>(<span class="at">x =</span> Population, <span class="at">y =</span> Income)) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span>                <span class="co"># Lorenz curve</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span>  <span class="co"># Line of equality</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Lorenz Curve"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cumulative Share of Population"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cumulative Share of Income"</span>) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<figcaption>Italy data Lorenz curve</figcaption>
+<p><img src="Intro_to_LIS_files/figure-html/IT%20data%202-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>gini_index <span class="ot">&lt;-</span> <span class="fu">Gini</span>(income<span class="sc">$</span>dhi)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(gini_index)  <span class="co"># Closer to 1 means more inequality</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3565733</code></pre>
+</div>
+</div>
+<!-- SECTION ********************************************************** -->
+</section>
+</section>
+</section>
+<section id="sec-lissy" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> LISSY</h1>
+<!-- SECTION ********************************************************** -->
+<section id="session-workflow" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="session-workflow"><span class="header-section-number">2.1</span> Session Workflow</h2>
+<ul>
+<li>open <a href="https://webui.lisdatacenter.org/userinterface/">LISSY UI</a></li>
+<li>have your code ready (copy/paste from your own device)</li>
+<li>select in the mask</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Project</th>
+<th>Package</th>
+<th>Subject</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>LIS</td>
+<td>R</td>
+<td>MyName</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>copy/paste code into code editor</li>
+<li>press the green ‘play’ button (upper left corner of editor)</li>
+<li>wait and check your email for results</li>
+</ul>
+</section>
+<section id="sample-sessions" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sample-sessions"><span class="header-section-number">2.2</span> Sample Sessions</h2>
+<section id="r" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="r"><span class="header-section-number">2.2.1</span> R</h3>
+<section id="tutorial" class="level4" data-number="2.2.1.1">
+<h4 data-number="2.2.1.1" class="anchored" data-anchor-id="tutorial"><span class="header-section-number">2.2.1.1</span> Tutorial</h4>
+<ul>
+<li>see <a href="https://www.lisdatacenter.org/wp-content/uploads/files/resources-R-Part-I.pdf">LIS Self Teaching Package 2020, Part I</a></li>
+<li>also for expected output</li>
+<li>good practice: go through this line-by-line</li>
+</ul>
+</section>
+<section id="code" class="level4" data-number="2.2.1.2">
+<h4 data-number="2.2.1.2" class="anchored" data-anchor-id="code"><span class="header-section-number">2.2.1.2</span> Code</h4>
+<section id="accessing-the-lis-databases-lissy-interface" class="level5" data-number="2.2.1.2.1">
+<h5 data-number="2.2.1.2.1" class="anchored" data-anchor-id="accessing-the-lis-databases-lissy-interface"><span class="header-section-number">2.2.1.2.1</span> Accessing the LIS databases LISSY Interface</h5>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read/load data frame</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(<span class="st">'gt06h'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print number valid obs (if dhi not missing)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">summary</span>(df<span class="sc">$</span>dhi, <span class="at">digits=</span><span class="dv">10</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df<span class="sc">$</span>dhi)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="sample-selection-and-weighting" class="level5" data-number="2.2.1.2.2">
+<h5 data-number="2.2.1.2.2" class="anchored" data-anchor-id="sample-selection-and-weighting"><span class="header-section-number">2.2.1.2.2</span> Sample selection and weighting</h5>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted mean</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>wmean <span class="ot">&lt;-</span> <span class="cf">function</span>(x, weight) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> x[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(x))]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    wgt <span class="ot">&lt;-</span> weight[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(x))]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    wmean <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>wgt<span class="sc">/</span><span class="fu">sum</span>(wgt))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(wmean)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted percentile (e.g. median)</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, wgt, split) {</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co"># select variables and data frames</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>,<span class="st">'hifactor'</span>,<span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>,<span class="st">'hpub_a'</span>,<span class="st">'hiprivate'</span>,<span class="st">'hxitsc'</span>,<span class="st">'hpopwgt'</span>,<span class="st">'nhhmem'</span>,<span class="st">'grossnet'</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(<span class="st">'gt06h'</span>, <span class="at">labels=</span><span class="cn">FALSE</span>, <span class="at">vars=</span>vars)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi,hifactor,hpub_i,hpub_u,hpub_a,hiprivate,hxitsc)'</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(<span class="st">'gt06h'</span>, <span class="at">labels=</span><span class="cn">FALSE</span>, <span class="at">vars=</span>vars, <span class="at">subset=</span>subset)</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="co"># print output</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(row_total <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df))</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(row_drop <span class="ot">&lt;-</span> <span class="fu">with</span>(df, <span class="fu">length</span>(<span class="fu">which</span>((<span class="fu">complete.cases</span>(dhi,hifactor,hpub_i,hpub_u,hpub_a,hiprivate,hxitsc) <span class="sc">==</span> <span class="cn">TRUE</span>)))))</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(miss_income<span class="ot">&lt;-</span> row_total<span class="sc">-</span> row_drop )</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(((row_total <span class="sc">-</span> row_drop) <span class="sc">/</span> row_total) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">toupper</span>(<span class="st">'grossnet'</span>)))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(df<span class="sc">$</span>grossnet, <span class="at">useNA =</span> <span class="st">'ifany'</span>))</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>grossnet, <span class="at">useNA =</span> <span class="st">'ifany'</span>)) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">"%"</span>, <span class="at">sep =</span> <span class="st">""</span>))</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">" "</span>), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="co"># print statistics per variable first data frame</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'hpopwgt'</span>,<span class="st">'dhi'</span>,<span class="st">'hifactor'</span>,<span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>,<span class="st">'hpub_a'</span>,<span class="st">'hiprivate'</span>,<span class="st">'hxitsc'</span>)) {</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>    df1 <span class="ot">&lt;-</span> df[<span class="sc">!</span><span class="fu">is.na</span>(df[[x]]), ]</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">toupper</span>(x)))</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="at">nb_obs =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df1[[x]]))))</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">summary</span>(df1[,x], <span class="at">digits =</span> <span class="dv">10</span>))</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="at">weighted_mean =</span> <span class="fu">round</span>(<span class="fu">wmean</span>(df1[[x]], df1<span class="sc">$</span>hpopwgt<span class="sc">*</span>df1<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">weighted_median =</span> <span class="fu">round</span>(<span class="fu">wNtile</span>(df1[[x]], df1<span class="sc">$</span>hpopwgt <span class="sc">*</span> df1<span class="sc">$</span>nhhmem, <span class="at">split =</span> <span class="fl">0.5</span>), <span class="at">digits =</span> <span class="dv">2</span>)))</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="co"># print statistics per variable second data frame</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'hpopwgt'</span>,<span class="st">'dhi'</span>,<span class="st">'hifactor'</span>,<span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>,<span class="st">'hpub_a'</span>,<span class="st">'hiprivate'</span>,<span class="st">'hxitsc'</span>)) {</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">toupper</span>(x)))</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="at">nb_obs =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(df2[[x]]))))</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">summary</span>(df2[,x], <span class="at">digits =</span> <span class="dv">10</span>))</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="at">weighted_mean =</span> <span class="fu">round</span>(<span class="fu">wmean</span>(df2[[x]], df2<span class="sc">$</span>hpopwgt<span class="sc">*</span>df2<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">weighted_median =</span> <span class="fu">round</span>(<span class="fu">wNtile</span>(df2[[x]], df2<span class="sc">$</span>hpopwgt <span class="sc">*</span> df2<span class="sc">$</span>nhhmem, <span class="at">split =</span> <span class="fl">0.5</span>), <span class="at">digits =</span> <span class="dv">2</span>)))</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="working-with-household-income-variables-top-and-bottom-coding-and-equivalence-scales" class="level5" data-number="2.2.1.2.3">
+<h5 data-number="2.2.1.2.3" class="anchored" data-anchor-id="working-with-household-income-variables-top-and-bottom-coding-and-equivalence-scales"><span class="header-section-number">2.2.1.2.3</span> Working with household income variables: top and bottom coding and equivalence scales</h5>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wmean <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">weight=</span> <span class="cn">NULL</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(weight))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    weight <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(x))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> x[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(x))]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    wgt <span class="ot">&lt;-</span> weight[<span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(x))]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    wmean <span class="ot">&lt;-</span> <span class="fu">sum</span>(y<span class="sc">*</span>wgt<span class="sc">/</span><span class="fu">sum</span>(wgt))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(wmean)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted percentile (e.g. median)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, <span class="at">wgt =</span> <span class="cn">NULL</span>, split) {</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">is.null</span>(wgt))</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    wgt <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(var))</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co"># apply top and bottom coding</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>topBottom <span class="ot">&lt;-</span> <span class="cf">function</span>(var, botline, topline) {</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    tb <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(var <span class="sc">&lt;</span> botline, botline, var)</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    tb[tb <span class="sc">&gt;</span> topline] <span class="ot">&lt;-</span> topline</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tb)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>setups <span class="ot">&lt;-</span> <span class="cf">function</span>(data_file) {</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'hifactor'</span>, <span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>, <span class="st">'hpub_a'</span>, <span class="st">'hiprivate'</span>, <span class="st">'hxitsc'</span>, <span class="st">'hpopwgt'</span>, <span class="st">'nhhmem'</span>, <span class="st">'grossnet'</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi, hifactor, hpub_i, hpub_u, hpub_a, hiprivate, hxitsc)'</span></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(data_file, <span class="at">labels=</span><span class="cn">FALSE</span>, <span class="at">vars=</span>vars, <span class="at">subset=</span>subset)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    botline <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    topline <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>dhi, df<span class="sc">$</span>hpopwgt, <span class="fl">0.5</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>dhiT <span class="ot">&lt;-</span> <span class="fu">topBottom</span>(df<span class="sc">$</span>dhi, botline, topline)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>edhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhiT <span class="sc">/</span> df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>cdhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhiT <span class="sc">/</span> df<span class="sc">$</span>nhhmem</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">setups</span>(<span class="st">'gt06h'</span>)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'dhiT'</span>)) {</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"VARIABLE: "</span>, <span class="fu">toupper</span>(x), <span class="at">sep=</span><span class="st">""</span>), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Average: "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">wmean</span>(df[[x]] , df<span class="sc">$</span>hpopwgt) , <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Median : "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">wNtile</span>(df[[x]], df<span class="sc">$</span>hpopwgt, <span class="fl">0.5</span>), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Minimum: "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">min</span>(df[[x]]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Maximum: "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">max</span>(df[[x]]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'cdhi'</span>, <span class="st">'edhi'</span>)) {</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"VARIABLE: "</span>, <span class="fu">toupper</span>(x), <span class="at">sep=</span><span class="st">""</span>), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Average: "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">wmean</span>(df[[x]] , df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem) , <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Median : "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">wNtile</span>(df[[x]], df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Minimum: "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">min</span>(df[[x]]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Maximum: "</span> , <span class="fu">format</span>(<span class="fu">round</span>(<span class="fu">max</span>(df[[x]]), <span class="at">digits =</span> <span class="dv">2</span>), <span class="at">big.mark =</span> <span class="st">","</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="inequality-the-gini-index" class="level5" data-number="2.2.1.2.4">
+<h5 data-number="2.2.1.2.4" class="anchored" data-anchor-id="inequality-the-gini-index"><span class="header-section-number">2.2.1.2.4</span> Inequality: The Gini Index</h5>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gini</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gini <span class="ot">&lt;-</span> <span class="cf">function</span>(x,weight) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    ox <span class="ot">&lt;-</span> <span class="fu">order</span>(x)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[ox]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    weight <span class="ot">&lt;-</span> weight[ox]<span class="sc">/</span><span class="fu">sum</span>(weight)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight<span class="sc">*</span>x)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(nu)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> nu<span class="sc">/</span>nu[n]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">sum</span>(nu[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">*</span>p[<span class="sc">-</span>n])<span class="sc">-</span><span class="fu">sum</span>(nu[<span class="sc">-</span>n]<span class="sc">*</span>p[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(res)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted percentile (e.g. median)</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, wgt, split) {</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>topBottom <span class="ot">&lt;-</span> <span class="cf">function</span>(var, botline, topline) {</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    tb <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(var <span class="sc">&lt;</span> botline, botline, var)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    tb[tb <span class="sc">&gt;</span> topline] <span class="ot">&lt;-</span> topline</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tb)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>setups <span class="ot">&lt;-</span> <span class="cf">function</span>(data_file) {</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'hifactor'</span>, <span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>, <span class="st">'hpub_a'</span>, <span class="st">'hiprivate'</span>, <span class="st">'hxitsc'</span>, <span class="st">'hpopwgt'</span>, <span class="st">'nhhmem'</span>, <span class="st">'grossnet'</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi, hifactor, hpub_i, hpub_u, hpub_a, hiprivate, hxitsc)'</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(data_file, <span class="at">labels=</span><span class="cn">FALSE</span>, <span class="at">vars=</span>vars, <span class="at">subset=</span>subset)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    botline <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    topline <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>dhi, df<span class="sc">$</span>hpopwgt, <span class="fl">0.5</span>)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>dhi <span class="ot">&lt;-</span> <span class="fu">topBottom</span>(df<span class="sc">$</span>dhi, botline, topline)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>edhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>cdhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> df<span class="sc">$</span>nhhmem</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">setups</span>(<span class="st">'gt06h'</span>)</span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">gini</span>(df<span class="sc">$</span>dhi , df<span class="sc">$</span>hpopwgt) , <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">gini</span>(df<span class="sc">$</span>cdhi, df<span class="sc">$</span>hpopwgt<span class="sc">*</span>df<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">4</span>)</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">gini</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt<span class="sc">*</span>df<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="relative-poverty-rates" class="level5" data-number="2.2.1.2.5">
+<h5 data-number="2.2.1.2.5" class="anchored" data-anchor-id="relative-poverty-rates"><span class="header-section-number">2.2.1.2.5</span> Relative poverty rates</h5>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted percentile (e.g. median)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, wgt, split) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>topBottom <span class="ot">&lt;-</span> <span class="cf">function</span>(var, botline, topline) {</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    tb <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(var <span class="sc">&lt;</span> botline, botline, var)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    tb[tb <span class="sc">&gt;</span> topline] <span class="ot">&lt;-</span> topline</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(tb)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>setups <span class="ot">&lt;-</span> <span class="cf">function</span>(data_file) {</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'hifactor'</span>, <span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>, <span class="st">'hpub_a'</span>, <span class="st">'hiprivate'</span>, <span class="st">'hxitsc'</span>, <span class="st">'hpopwgt'</span>, <span class="st">'nhhmem'</span>, <span class="st">'grossnet'</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>    subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi, hifactor, hpub_i, hpub_u, hpub_a, hiprivate, hxitsc)'</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(data_file, <span class="at">labels=</span><span class="cn">FALSE</span>, <span class="at">vars=</span>vars, <span class="at">subset=</span>subset)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    botline <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    topline <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>dhi, df<span class="sc">$</span>hpopwgt, <span class="fl">0.5</span>)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>dhi <span class="ot">&lt;-</span> <span class="fu">topBottom</span>(df<span class="sc">$</span>dhi, botline, topline)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>edhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>cdhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> df<span class="sc">$</span>nhhmem</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">setups</span>(<span class="st">'gt06h'</span>)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>maxline <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> (<span class="fu">sum</span>((df<span class="sc">$</span>edhi <span class="sc">&lt;</span> maxline <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>)) <span class="sc">*</span> df<span class="sc">$</span>hpopwgt) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>hpopwgt)), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> (<span class="fu">sum</span>((df<span class="sc">$</span>edhi <span class="sc">&lt;</span> maxline <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>)) <span class="sc">*</span> df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem)), <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comparing-income-concepts" class="level5" data-number="2.2.1.2.6">
+<h5 data-number="2.2.1.2.6" class="anchored" data-anchor-id="comparing-income-concepts"><span class="header-section-number">2.2.1.2.6</span> Comparing income concepts</h5>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gini</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gini <span class="ot">&lt;-</span> <span class="cf">function</span>(x, weight) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    ox <span class="ot">&lt;-</span> <span class="fu">order</span>(x)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[ox]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    weight <span class="ot">&lt;-</span> weight[ox]<span class="sc">/</span><span class="fu">sum</span>(weight)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight<span class="sc">*</span>x)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(nu)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> nu<span class="sc">/</span>nu[n]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">sum</span>(nu[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">*</span>p[<span class="sc">-</span>n])<span class="sc">-</span><span class="fu">sum</span>(nu[<span class="sc">-</span>n]<span class="sc">*</span>p[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(res)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># weighted percentile (e.g. median)</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, wgt, split) {</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>setups <span class="ot">&lt;-</span> <span class="cf">function</span>(data_file) {</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'hifactor'</span>, <span class="st">'hi33'</span>, <span class="st">'hpublic'</span>,<span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>, <span class="st">'hpub_a'</span>, <span class="st">'hiprivate'</span>, <span class="st">'hxitsc'</span>, <span class="st">'hpopwgt'</span>, <span class="st">'nhhmem'</span>, <span class="st">'grossnet'</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi, hifactor, hi33, hpublic, hpub_i, hpub_u, hpub_a, hiprivate, hxitsc)'</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(data_file, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">vars =</span> vars, <span class="at">subset =</span> subset)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>dhi <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>dhi <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>dhi)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>edhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mi <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate<span class="sc">+</span>df<span class="sc">$</span>hi33</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mi <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>mi <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>mi)</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>emi <span class="ot">&lt;-</span> df<span class="sc">$</span>mi <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>siti <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate <span class="sc">+</span> df<span class="sc">$</span>hi33 <span class="sc">+</span> df<span class="sc">$</span>hpub_i <span class="sc">+</span> df<span class="sc">$</span>hpub_u <span class="sc">-</span> df<span class="sc">$</span>hxitsc</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>siti <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>siti <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>siti)</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>esiti <span class="ot">&lt;-</span> df<span class="sc">$</span>siti <span class="sc">/</span>(df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>sa <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate <span class="sc">+</span> df<span class="sc">$</span>hi33 <span class="sc">+</span> df<span class="sc">$</span>hpub_a</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>sa <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>sa <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>sa)</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>esa <span class="ot">&lt;-</span> df<span class="sc">$</span>sa <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">setups</span>(<span class="st">'gt06h'</span>)</span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>maxline <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(var <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>)) {</span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"VARIABLE: "</span>, var), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Gini Coefficient :"</span> , <span class="fu">round</span>(<span class="fu">gini</span>(df[[var]], df<span class="sc">$</span>hpopwgt<span class="sc">*</span>df<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">3</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Poverty Rate :"</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> (<span class="fu">sum</span>((df[[var]] <span class="sc">&lt;</span> maxline <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>)) <span class="sc">*</span> df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem)), <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (var <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'hpublic'</span>,<span class="st">'hpub_i'</span>,<span class="st">'hpub_u'</span>,<span class="st">'hpub_a'</span>)) {</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Mean: "</span>, var, <span class="fu">round</span>(<span class="fu">mean</span>(df[[var]]), <span class="at">digits =</span> <span class="dv">2</span>)))</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comparing-multiple-countries" class="level5" data-number="2.2.1.2.7">
+<h5 data-number="2.2.1.2.7" class="anchored" data-anchor-id="comparing-multiple-countries"><span class="header-section-number">2.2.1.2.7</span> Comparing multiple countries</h5>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gini <span class="ot">&lt;-</span> <span class="cf">function</span>(x,weight) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    ox <span class="ot">&lt;-</span> <span class="fu">order</span>(x)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[ox]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    weight <span class="ot">&lt;-</span> weight[ox]<span class="sc">/</span><span class="fu">sum</span>(weight)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight<span class="sc">*</span>x)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(nu)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> nu<span class="sc">/</span>nu[n]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">sum</span>(nu[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">*</span>p[<span class="sc">-</span>n])<span class="sc">-</span><span class="fu">sum</span>(nu[<span class="sc">-</span>n]<span class="sc">*</span>p[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(res)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, wgt, split) {</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>setups <span class="ot">&lt;-</span> <span class="cf">function</span>(data_file) {</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'hifactor'</span>, <span class="st">'hi33'</span>, <span class="st">'hpublic'</span>, <span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>, <span class="st">'hpub_a'</span>, <span class="st">'hiprivate'</span>, <span class="st">'hxitsc'</span>, <span class="st">'hpopwgt'</span>, <span class="st">'nhhmem'</span>, <span class="st">'grossnet'</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi,hifactor,hi33,hpub_i,hpub_u,hpub_a,hiprivate,hxitsc)'</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(data_file, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">vars =</span> vars, <span class="at">subset =</span> subset)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>dhi <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>dhi <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>dhi)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>edhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mi <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate<span class="sc">+</span>df<span class="sc">$</span>hi33</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mi <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>mi <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>mi)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>emi <span class="ot">&lt;-</span> df<span class="sc">$</span>mi <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>siti <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate <span class="sc">+</span> df<span class="sc">$</span>hi33 <span class="sc">+</span> df<span class="sc">$</span>hpub_i <span class="sc">+</span> df<span class="sc">$</span>hpub_u <span class="sc">-</span> df<span class="sc">$</span>hxitsc</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>siti <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>siti <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>siti)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>esiti <span class="ot">&lt;-</span> df<span class="sc">$</span>siti <span class="sc">/</span>(df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>sa <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate <span class="sc">+</span> df<span class="sc">$</span>hi33 <span class="sc">+</span> df<span class="sc">$</span>hpub_a</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>sa <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>sa <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>sa)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>esa <span class="ot">&lt;-</span> df<span class="sc">$</span>sa <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'gt06'</span>, <span class="st">'us04'</span>, <span class="st">'dk04'</span>, <span class="st">'hu05'</span>, <span class="st">'il05'</span>)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>maxline <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ccyy <span class="cf">in</span> datasets) {</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">setups</span>(<span class="fu">paste</span>(ccyy,<span class="st">'h'</span>,<span class="at">sep=</span><span class="st">''</span>))</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(var <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>)) {</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"VARIABLE: "</span>, var), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Gini Coefficient :"</span> , <span class="fu">round</span>(<span class="fu">gini</span>(df[[var]], df<span class="sc">$</span>hpopwgt<span class="sc">*</span>df<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">3</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Poverty Rate :"</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> (<span class="fu">sum</span>((df[[var]] <span class="sc">&lt;</span> maxline <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>)) <span class="sc">*</span> df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem)), <span class="at">digits =</span> <span class="dv">2</span>)), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">c</span>(<span class="fu">toupper</span>(<span class="st">'grossnet'</span>)))</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">table</span>(df<span class="sc">$</span>grossnet, <span class="at">useNA =</span> <span class="st">'ifany'</span>))</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(df<span class="sc">$</span>grossnet, <span class="at">useNA =</span> <span class="st">'ifany'</span>)) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">digits =</span> <span class="dv">2</span>), <span class="st">"%"</span>, <span class="at">sep =</span> <span class="st">""</span>))</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">" "</span>), <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (var <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'hpublic'</span>,<span class="st">'hpub_i'</span>,<span class="st">'hpub_u'</span>,<span class="st">'hpub_a'</span>)) {</span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">"Mean: "</span>, var, <span class="fu">round</span>(<span class="fu">mean</span>(df[[var]]), <span class="at">digits =</span> <span class="dv">2</span>)))</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">" "</span>, <span class="at">sep =</span> <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>)</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="producing-compact-and-concise-output" class="level5" data-number="2.2.1.2.8">
+<h5 data-number="2.2.1.2.8" class="anchored" data-anchor-id="producing-compact-and-concise-output"><span class="header-section-number">2.2.1.2.8</span> Producing compact and concise output</h5>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>gini <span class="ot">&lt;-</span> <span class="cf">function</span>(x,weight) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    ox <span class="ot">&lt;-</span> <span class="fu">order</span>(x)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[ox]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    weight <span class="ot">&lt;-</span> weight[ox]<span class="sc">/</span><span class="fu">sum</span>(weight)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(weight<span class="sc">*</span>x)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">length</span>(nu)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    nu <span class="ot">&lt;-</span> nu<span class="sc">/</span>nu[n]</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">sum</span>(nu[<span class="sc">-</span><span class="dv">1</span>]<span class="sc">*</span>p[<span class="sc">-</span>n])<span class="sc">-</span><span class="fu">sum</span>(nu[<span class="sc">-</span>n]<span class="sc">*</span>p[<span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(res)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>wNtile <span class="ot">&lt;-</span> <span class="cf">function</span>(var, wgt, split) {</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> var[<span class="fu">order</span>(var)]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> wgt[<span class="fu">order</span>(var)]</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    z <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(y) <span class="sc">/</span> <span class="fu">sum</span>(y)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    cop <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="fu">length</span>(split))</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(cop)) {</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>        cop[i] <span class="ot">&lt;-</span> x[<span class="fu">Find</span>(<span class="cf">function</span>(h) z[h] <span class="sc">&gt;</span> split[i], <span class="fu">seq_along</span>(z))]</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(cop)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>setups <span class="ot">&lt;-</span> <span class="cf">function</span>(data_file) {</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'dhi'</span>, <span class="st">'hifactor'</span>, <span class="st">'hi33'</span>, <span class="st">'hpublic'</span>, <span class="st">'hpub_i'</span>, <span class="st">'hpub_u'</span>, <span class="st">'hpub_a'</span>, <span class="st">'hiprivate'</span>, <span class="st">'hxitsc'</span>, <span class="st">'hpopwgt'</span>, <span class="st">'nhhmem'</span>, <span class="st">'grossnet'</span>)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    subset <span class="ot">&lt;-</span> <span class="st">'complete.cases(dhi,hifactor,hi33,hpub_i,hpub_u,hpub_a,hiprivate,hxitsc)'</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">read.LIS</span>(data_file, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">vars =</span> vars, <span class="at">subset =</span> subset)</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>dhi <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>dhi <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>dhi)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>edhi <span class="ot">&lt;-</span> df<span class="sc">$</span>dhi <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mi <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate<span class="sc">+</span>df<span class="sc">$</span>hi33</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>mi <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>mi <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>mi)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>emi <span class="ot">&lt;-</span> df<span class="sc">$</span>mi <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>siti <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate <span class="sc">+</span> df<span class="sc">$</span>hi33 <span class="sc">+</span> df<span class="sc">$</span>hpub_i <span class="sc">+</span> df<span class="sc">$</span>hpub_u <span class="sc">-</span> df<span class="sc">$</span>hxitsc</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>siti <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>siti <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>siti)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>esiti <span class="ot">&lt;-</span> df<span class="sc">$</span>siti <span class="sc">/</span>(df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>sa <span class="ot">&lt;-</span> df<span class="sc">$</span>hifactor <span class="sc">+</span> df<span class="sc">$</span>hiprivate <span class="sc">+</span> df<span class="sc">$</span>hi33 <span class="sc">+</span> df<span class="sc">$</span>hpub_a</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>sa <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>sa <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="dv">0</span>, df<span class="sc">$</span>sa)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    df<span class="sc">$</span>esa <span class="ot">&lt;-</span> df<span class="sc">$</span>sa <span class="sc">/</span> (df<span class="sc">$</span>nhhmem<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'gt06'</span>, <span class="st">'us04'</span>, <span class="st">'dk04'</span>, <span class="st">'hu05'</span>, <span class="st">'il05'</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>maxline <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>,<span class="fu">length</span>(datasets),<span class="dv">8</span>)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(result) <span class="ot">&lt;-</span> datasets</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(result) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(result) <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">'gini_mi'</span>,<span class="st">'gini_siti'</span>,<span class="st">'gini_sa'</span>,<span class="st">'gini_dhi'</span>,<span class="st">'pov_mi'</span>,<span class="st">'pov_siti'</span>,<span class="st">'pov_sa'</span>,<span class="st">'pov_dhi'</span>)</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (ccyy <span class="cf">in</span> datasets) {</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">setups</span>(<span class="fu">paste</span>(ccyy,<span class="st">'h'</span>,<span class="at">sep=</span><span class="st">''</span>))</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For net income datasets, blank out market income measures, since these cannot be calculated correctly</span></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(var <span class="cf">in</span> <span class="fu">c</span>( <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>)) {</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (df<span class="sc">$</span>grossnet <span class="sc">==</span><span class="dv">200</span>) {</span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a>            result[<span class="fu">match</span>(ccyy, datasets), <span class="fu">match</span>(var, <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>))] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">gini</span>(df[[var]], df<span class="sc">$</span>hpopwgt<span class="sc">*</span>df<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a>            result[<span class="fu">match</span>(ccyy, datasets), <span class="dv">4</span><span class="sc">+</span> <span class="fu">match</span>(var, <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>))] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> (<span class="fu">sum</span>((df[[var]] <span class="sc">&lt;</span> maxline <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>)) <span class="sc">*</span> df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem)), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> {</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span>(var <span class="cf">in</span> <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>)) {</span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>                result[<span class="fu">match</span>(ccyy, datasets), <span class="fu">match</span>(var, <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>))] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">gini</span>(df[[var]], df<span class="sc">$</span>hpopwgt<span class="sc">*</span>df<span class="sc">$</span>nhhmem), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>                result[<span class="fu">match</span>(ccyy, datasets), <span class="dv">4</span> <span class="sc">+</span> <span class="fu">match</span>(var, <span class="fu">c</span>(<span class="st">'emi'</span>, <span class="st">'esiti'</span>, <span class="st">'esa'</span>, <span class="st">'edhi'</span>))] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> (<span class="fu">sum</span>((df[[var]] <span class="sc">&lt;</span> maxline <span class="sc">*</span> <span class="fu">wNtile</span>(df<span class="sc">$</span>edhi, df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem, <span class="fl">0.5</span>)) <span class="sc">*</span> df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>hpopwgt <span class="sc">*</span> df<span class="sc">$</span>nhhmem)), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">write.csv</span>(result))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="producing-graphs-with-lissy" class="level5" data-number="2.2.1.2.9">
+<h5 data-number="2.2.1.2.9" class="anchored" data-anchor-id="producing-graphs-with-lissy"><span class="header-section-number">2.2.1.2.9</span> Producing graphs with LISSY</h5>
+<p><strong>Note</strong>: Throws error, not working (ggplot and purrr issue)</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare session</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>all_lissyrtools_scripts <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_ls</span>(<span class="st">"/media/user/lissyrtools/"</span>)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#invisible(purrr::map(all_lissyrtools_scripts, ~ source(.x)))</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(all_lissyrtools_scripts, <span class="sc">~</span> <span class="fu">source</span>(.x))</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Script --------------------------</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Read files</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>lissy_datasets <span class="ot">&lt;-</span> <span class="fu">read_lissy_files</span>(<span class="at">files =</span> <span class="fu">c</span>(<span class="st">"gt06h"</span>, <span class="st">"us04h"</span>, <span class="st">"dk04h"</span>), <span class="at">full_year_name =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Data management</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>lissy_datasets <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_negative_values_to_zero</span>(<span class="at">variable =</span> <span class="st">"dhi"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_equivalise</span>(<span class="at">variable =</span> <span class="st">"dhi"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_top_code_with_iqr</span>(<span class="at">variable =</span> <span class="st">"dhi"</span>, <span class="at">times =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="fu">transform_weight_by_hh_size</span>(<span class="at">variable =</span> <span class="st">"dhi"</span>)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Lorenz Curve</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>lissy_datasets <span class="sc">%&gt;%</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_lorenz_curve</span>(<span class="at">variable =</span> <span class="st">"dhi"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">plot_theme =</span> <span class="st">"lis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="stata" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="stata"><span class="header-section-number">2.2.2</span> STATA</h3>
+<section id="code-1" class="level4" data-number="2.2.2.1">
+<h4 data-number="2.2.2.1" class="anchored" data-anchor-id="code-1"><span class="header-section-number">2.2.2.1</span> Code</h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">/*</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">INEQUALITY OVER TIME</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">date:   20250402</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">chgd:   20250402</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">job:    ineqmoments</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">*/</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="kw">display</span> <span class="st">"$S_TIME  $S_DATE"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span> <span class="dv">linesize</span> 255</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">// GLOBALS</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> year0 2004</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> year1 2016</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> yearb 2007</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> ctrylist <span class="st">"be de uk us"</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> pvars <span class="st">"iso2 year relation age enroll"</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> hvars <span class="st">"dhi hifactor nhhmem hpopwgt"</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> vars  <span class="st">"$pvars $hvars"</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a><span class="co">// SELECT AND LOAD DATA</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a><span class="co">// BE, DE, UK, US: some OECD countries with yearly observations from 2004 to 2016</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a><span class="co">// VARIABLE SELECTION</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>lissyuse, iso2(<span class="ot">$ctrylist</span>) from(<span class="ot">$year0</span>) to(<span class="ot">$year1</span>) pvars(<span class="ot">$pvars</span>) hvars(<span class="ot">$hvars</span>) </span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a><span class="co">// HEAD OF HH ONLY  (18+, not in edu)</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> relation==1000</span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> age&gt;=18 &amp; age&lt;.</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="kw">keep</span> <span class="kw">if</span> !<span class="fu">inlist</span>(enroll,100,110,120)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> relation enroll</span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a><span class="co">// YEARS</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a><span class="kw">levelsof</span> <span class="fu">year</span></span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> allyrs = <span class="st">"`r(levels)'"</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> Nyrs : <span class="fu">word</span> <span class="fu">count</span> <span class="ot">$allyrs</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a><span class="kw">qui</span> <span class="kw">sum</span> <span class="fu">year</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a><span class="kw">levelsof</span> <span class="fu">year</span> <span class="kw">if</span> <span class="fu">year</span>&lt;<span class="ot">`r(max)'</span></span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> allyrs0 = <span class="st">"`r(levels)'"</span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a><span class="co">// MAKE CTRY SPECIFIC TIME SERIES STRINGS</span></span>
+<span id="cb15-56"><a href="#cb15-56" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">ct</span> <span class="kw">in</span> <span class="ot">$ctrylist</span> {</span>
+<span id="cb15-57"><a href="#cb15-57" aria-hidden="true" tabindex="-1"></a>        <span class="kw">qui</span> <span class="kw">levelsof</span> <span class="fu">year</span> <span class="kw">if</span> iso2==<span class="st">"`ct'"</span>, <span class="kw">local</span>(YRS_<span class="ot">`ct'</span>)</span>
+<span id="cb15-58"><a href="#cb15-58" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> YR0_<span class="ot">`ct'</span> : <span class="fu">word</span> 1 <span class="kw">of</span> <span class="ot">`YRS_`ct'</span>'</span>
+<span id="cb15-59"><a href="#cb15-59" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> NYR_<span class="ot">`ct'</span> : <span class="fu">word</span> <span class="fu">count</span> <span class="ot">`YRS_`ct'</span>'</span>
+<span id="cb15-60"><a href="#cb15-60" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> NYR1_<span class="ot">`ct'</span>= <span class="ot">`NYR_`ct'</span>'-1</span>
+<span id="cb15-61"><a href="#cb15-61" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> YRz_<span class="ot">`ct'</span> = <span class="ot">`NYR1_`ct'</span>'+<span class="ot">`YR0_`ct'</span>'</span>
+<span id="cb15-62"><a href="#cb15-62" aria-hidden="true" tabindex="-1"></a>        <span class="kw">qui</span> <span class="kw">levelsof</span> <span class="fu">year</span> <span class="kw">if</span> iso2==<span class="st">"`ct'"</span> &amp; <span class="fu">year</span>&lt;<span class="ot">`YRz_`ct'</span>', <span class="kw">local</span>(YRS1_<span class="ot">`ct'</span>)</span>
+<span id="cb15-63"><a href="#cb15-63" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> TYRS_<span class="ot">`ct'</span> <span class="st">""</span></span>
+<span id="cb15-64"><a href="#cb15-64" aria-hidden="true" tabindex="-1"></a>        <span class="kw">forvalues</span> j=1/<span class="ot">`NYR1_`ct'</span>' {</span>
+<span id="cb15-65"><a href="#cb15-65" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> yr0 : <span class="fu">word</span> <span class="ot">`j'</span> <span class="kw">of</span> <span class="ot">`YRS_`ct'</span>'</span>
+<span id="cb15-66"><a href="#cb15-66" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> ++j</span>
+<span id="cb15-67"><a href="#cb15-67" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> yr1 : <span class="fu">word</span> <span class="ot">`j'</span> <span class="kw">of</span> <span class="ot">`YRS_`ct'</span>'</span>
+<span id="cb15-68"><a href="#cb15-68" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> yr1 = <span class="fu">substr</span>(<span class="st">"`yr1'"</span>,3,2)</span>
+<span id="cb15-69"><a href="#cb15-69" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> TYRS_<span class="ot">`ct'</span> <span class="st">"`TYRS_`ct'' `yr0'/`yr1'"</span></span>
+<span id="cb15-70"><a href="#cb15-70" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb15-71"><a href="#cb15-71" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-72"><a href="#cb15-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-73"><a href="#cb15-73" aria-hidden="true" tabindex="-1"></a><span class="co">// RECODE VARIABLES</span></span>
+<span id="cb15-74"><a href="#cb15-74" aria-hidden="true" tabindex="-1"></a><span class="kw">encode</span> iso2, <span class="kw">gen</span>(niso2)</span>
+<span id="cb15-75"><a href="#cb15-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-76"><a href="#cb15-76" aria-hidden="true" tabindex="-1"></a><span class="co">// RENAME</span></span>
+<span id="cb15-77"><a href="#cb15-77" aria-hidden="true" tabindex="-1"></a><span class="kw">ren</span> hifactor fhi</span>
+<span id="cb15-78"><a href="#cb15-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-79"><a href="#cb15-79" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-80"><a href="#cb15-80" aria-hidden="true" tabindex="-1"></a><span class="co">// WEIGHTS AND SCALES</span></span>
+<span id="cb15-81"><a href="#cb15-81" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-82"><a href="#cb15-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-83"><a href="#cb15-83" aria-hidden="true" tabindex="-1"></a><span class="co">// WEIGHTS</span></span>
+<span id="cb15-84"><a href="#cb15-84" aria-hidden="true" tabindex="-1"></a><span class="co">// hpopwgt for variables which are at hh level (e.g., dhi) </span></span>
+<span id="cb15-85"><a href="#cb15-85" aria-hidden="true" tabindex="-1"></a><span class="co">// hpopwgt*nhhmem for variabels at the person level</span></span>
+<span id="cb15-86"><a href="#cb15-86" aria-hidden="true" tabindex="-1"></a><span class="co">// note: these are a-weights</span></span>
+<span id="cb15-87"><a href="#cb15-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-88"><a href="#cb15-88" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> wgt <span class="st">"[aw=hpopwgt]"</span></span>
+<span id="cb15-89"><a href="#cb15-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-90"><a href="#cb15-90" aria-hidden="true" tabindex="-1"></a><span class="co">// EQUIVALENCE SCALES</span></span>
+<span id="cb15-91"><a href="#cb15-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-92"><a href="#cb15-92" aria-hidden="true" tabindex="-1"></a>g dhi_e = dhi /(nhhmem^0.5)</span>
+<span id="cb15-93"><a href="#cb15-93" aria-hidden="true" tabindex="-1"></a>g fhi_e = fhi /(nhhmem^0.5)</span>
+<span id="cb15-94"><a href="#cb15-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-95"><a href="#cb15-95" aria-hidden="true" tabindex="-1"></a><span class="co">// DEFLATION (KEEP LOCAL CURRENCY, NO PPP)</span></span>
+<span id="cb15-96"><a href="#cb15-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-97"><a href="#cb15-97" aria-hidden="true" tabindex="-1"></a><span class="kw">merge</span> <span class="fu">m</span>:1 iso2 <span class="fu">year</span> <span class="kw">using</span> <span class="ot">$myincl</span>/ppp_2017, keepusing(cpi) <span class="kw">keep</span>(<span class="fu">match</span>) nogenerate</span>
+<span id="cb15-98"><a href="#cb15-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-99"><a href="#cb15-99" aria-hidden="true" tabindex="-1"></a>g dhi_e17 = dhi_e*100/cpi</span>
+<span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a>g fhi_e17 = fhi_e*100/cpi</span>
+<span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a><span class="co">// ZERO REAL INC GRWTH AT MEDIAN</span></span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a><span class="co">// NORMALIZING TO yearb=1 FOR ALL MOMENTS: ON MOMENTS DATA NOT ON MICRO DATA (0's!)</span></span>
+<span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> yvarlist <span class="st">"dhi_e17 fhi_e17"</span></span>
+<span id="cb15-107"><a href="#cb15-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-108"><a href="#cb15-108" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-109"><a href="#cb15-109" aria-hidden="true" tabindex="-1"></a><span class="co">// PICTURES</span></span>
+<span id="cb15-110"><a href="#cb15-110" aria-hidden="true" tabindex="-1"></a><span class="co">// --------------------------------------------------</span></span>
+<span id="cb15-111"><a href="#cb15-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-112"><a href="#cb15-112" aria-hidden="true" tabindex="-1"></a><span class="kw">foreach</span> <span class="kw">ct</span> <span class="kw">in</span> <span class="ot">$ctrylist</span> {</span>
+<span id="cb15-113"><a href="#cb15-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-114"><a href="#cb15-114" aria-hidden="true" tabindex="-1"></a><span class="kw">local</span> CT = <span class="fu">strupper</span>(<span class="st">"`ct'"</span>)</span>
+<span id="cb15-115"><a href="#cb15-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-116"><a href="#cb15-116" aria-hidden="true" tabindex="-1"></a><span class="kw">preserve</span></span>
+<span id="cb15-117"><a href="#cb15-117" aria-hidden="true" tabindex="-1"></a>        <span class="kw">keep</span> <span class="kw">if</span> iso2==<span class="st">"`ct'"</span></span>
+<span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>        <span class="kw">keep</span> <span class="ot">$yvarlist</span> <span class="fu">year</span> hpopwgt</span>
+<span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> collapsestm <span class="st">""</span></span>
+<span id="cb15-121"><a href="#cb15-121" aria-hidden="true" tabindex="-1"></a>        <span class="kw">foreach</span> <span class="fu">y</span> <span class="kw">of</span> <span class="kw">global</span> yvarlist {</span>
+<span id="cb15-122"><a href="#cb15-122" aria-hidden="true" tabindex="-1"></a>                <span class="kw">qui</span> <span class="fu">count</span> <span class="kw">if</span> <span class="ot">`y'</span>&gt;=0 </span>
+<span id="cb15-123"><a href="#cb15-123" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> N<span class="ot">`y'</span> = <span class="fu">r</span>(<span class="kw">N</span>) </span>
+<span id="cb15-124"><a href="#cb15-124" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> N1<span class="ot">`y'</span> = 1+1/<span class="ot">`N`y'</span>' </span>
+<span id="cb15-125"><a href="#cb15-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-126"><a href="#cb15-126" aria-hidden="true" tabindex="-1"></a>                <span class="kw">sort</span> <span class="ot">`y'</span> </span>
+<span id="cb15-127"><a href="#cb15-127" aria-hidden="true" tabindex="-1"></a>                g i<span class="ot">`y'</span> = <span class="dt">_n</span>*<span class="ot">`y'</span> <span class="kw">if</span> <span class="ot">`y'</span>&gt;=0 </span>
+<span id="cb15-128"><a href="#cb15-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-129"><a href="#cb15-129" aria-hidden="true" tabindex="-1"></a>                <span class="kw">local</span> collapsestm <span class="st">"`collapsestm' (mean) mn`y' = `y' (sum) gn`y'=i`y' gd`y'=`y'"</span></span>
+<span id="cb15-130"><a href="#cb15-130" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb15-131"><a href="#cb15-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-132"><a href="#cb15-132" aria-hidden="true" tabindex="-1"></a>        gcollapse <span class="ot">`collapsestm'</span>  <span class="ot">$wgt</span>, fast <span class="kw">by</span>(<span class="fu">year</span>)</span>
+<span id="cb15-133"><a href="#cb15-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-134"><a href="#cb15-134" aria-hidden="true" tabindex="-1"></a>        <span class="kw">foreach</span> <span class="fu">y</span> <span class="kw">of</span> <span class="kw">global</span> yvarlist {</span>
+<span id="cb15-135"><a href="#cb15-135" aria-hidden="true" tabindex="-1"></a>                <span class="kw">if</span> (<span class="fu">substr</span>(<span class="st">"`y'"</span>,1,1)==<span class="st">"d"</span>) {</span>
+<span id="cb15-136"><a href="#cb15-136" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">local</span> yd <span class="st">"Disp."</span></span>
+<span id="cb15-137"><a href="#cb15-137" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb15-138"><a href="#cb15-138" aria-hidden="true" tabindex="-1"></a>                <span class="kw">else</span> {</span>
+<span id="cb15-139"><a href="#cb15-139" aria-hidden="true" tabindex="-1"></a>                        <span class="kw">local</span> yd <span class="st">"Mkt."</span></span>
+<span id="cb15-140"><a href="#cb15-140" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb15-141"><a href="#cb15-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-142"><a href="#cb15-142" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Gini</span></span>
+<span id="cb15-143"><a href="#cb15-143" aria-hidden="true" tabindex="-1"></a>                g gi<span class="ot">`y'</span> = 2*gn<span class="ot">`y'</span>/(<span class="ot">`N`y'</span>'*gd<span class="ot">`y'</span>)-<span class="ot">`N1`y'</span>'</span>
+<span id="cb15-144"><a href="#cb15-144" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Mean normalized to yearb=1</span></span>
+<span id="cb15-145"><a href="#cb15-145" aria-hidden="true" tabindex="-1"></a>                <span class="kw">sum</span> mn<span class="ot">`y'</span> <span class="kw">if</span> <span class="fu">year</span>==<span class="ot">$yearb</span>, <span class="kw">meanonly</span></span>
+<span id="cb15-146"><a href="#cb15-146" aria-hidden="true" tabindex="-1"></a>                <span class="kw">replace</span> mn<span class="ot">`y'</span>=mn<span class="ot">`y'</span>/<span class="fu">r</span>(<span class="fu">min</span>)</span>
+<span id="cb15-147"><a href="#cb15-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-148"><a href="#cb15-148" aria-hidden="true" tabindex="-1"></a>                <span class="kw">label</span> <span class="kw">var</span> mn<span class="ot">`y'</span> <span class="st">"`yd' Income (left)"</span></span>
+<span id="cb15-149"><a href="#cb15-149" aria-hidden="true" tabindex="-1"></a>                <span class="kw">label</span> <span class="kw">var</span> gi<span class="ot">`y'</span> <span class="st">"Gini `yd' Inc."</span></span>
+<span id="cb15-150"><a href="#cb15-150" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb15-151"><a href="#cb15-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-152"><a href="#cb15-152" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> options <span class="st">"xline(2008 2011) legend(pos(6) col(2) order(1 3 2 4))"</span></span>
+<span id="cb15-153"><a href="#cb15-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-154"><a href="#cb15-154" aria-hidden="true" tabindex="-1"></a>        <span class="kw">sort</span> <span class="fu">year</span></span>
+<span id="cb15-155"><a href="#cb15-155" aria-hidden="true" tabindex="-1"></a>        <span class="kw">twoway</span> (<span class="kw">line</span> mn* <span class="fu">year</span>, <span class="bn">ytitle</span>(<span class="st">"mean income level, $yearb=1"</span>) lcolor(<span class="bn">midblue</span> <span class="bn">cranberry</span>) lpattern(shortdash shortdash)) (<span class="kw">line</span> gi* <span class="fu">year</span>, yaxis(2) <span class="bn">ytitle</span>(<span class="st">"inequality"</span>, axis(2)) lcolor(<span class="bn">midblue</span> <span class="bn">cranberry</span>) lpattern(solid solid)), <span class="bn">name</span>(m_quant_<span class="ot">`y'</span>_<span class="ot">`ct'</span>) <span class="bn">title</span>(<span class="st">"Real{sub:2017} Mean Income and Gini | Country=`CT'"</span>) <span class="ot">`options'</span> </span>
+<span id="cb15-156"><a href="#cb15-156" aria-hidden="true" tabindex="-1"></a>                graphexportpdf <span class="ot">$mypdf</span>/ineqmoments_<span class="ot">`y'</span>_<span class="ot">`ct'</span>, dropeps</span>
+<span id="cb15-157"><a href="#cb15-157" aria-hidden="true" tabindex="-1"></a><span class="kw">restore</span></span>
+<span id="cb15-158"><a href="#cb15-158" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="output" class="level4" data-number="2.2.2.2">
+<h4 data-number="2.2.2.2" class="anchored" data-anchor-id="output"><span class="header-section-number">2.2.2.2</span> Output</h4>
+<div id="fig-StataOutput" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-StataOutput-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Stata Graphs
+</figcaption>
+<div aria-describedby="fig-StataOutput-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-StataOutput" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-StataOutputBE" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-StataOutputBE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Belgium
+</figcaption>
+<div aria-describedby="fig-StataOutputBE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/job_884514_ineqmoments_20210920__be.png" class="lightbox" data-gallery="fig-StataOutput" title="Figure&nbsp;1&nbsp;(a): Belgium"><img src="images/job_884514_ineqmoments_20210920__be.png" class="img-fluid figure-img" data-ref-parent="fig-StataOutput"></a>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-StataOutput" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-StataOutputDE" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-StataOutputDE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Germany
+</figcaption>
+<div aria-describedby="fig-StataOutputDE-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/job_884514_ineqmoments_20210920__de.png" class="lightbox" data-gallery="fig-StataOutput" title="Figure&nbsp;1&nbsp;(b): Germany"><img src="images/job_884514_ineqmoments_20210920__de.png" class="img-fluid figure-img" data-ref-parent="fig-StataOutput"></a>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-StataOutput" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-StataOutputUK" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-StataOutputUK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) UK
+</figcaption>
+<div aria-describedby="fig-StataOutputUK-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/job_884514_ineqmoments_20210920__uk.png" class="lightbox" data-gallery="fig-StataOutput" title="Figure&nbsp;1&nbsp;(c): UK"><img src="images/job_884514_ineqmoments_20210920__uk.png" class="img-fluid figure-img" data-ref-parent="fig-StataOutput"></a>
+</div>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-StataOutput" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-StataOutputUS" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-fig" id="fig-StataOutputUS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) US
+</figcaption>
+<div aria-describedby="fig-StataOutputUS-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/job_884514_ineqmoments_20210920__us.png" class="lightbox" data-gallery="fig-StataOutput" title="Figure&nbsp;1&nbsp;(d): US"><img src="images/job_884514_ineqmoments_20210920__us.png" class="img-fluid figure-img" data-ref-parent="fig-StataOutput"></a>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</figure>
+</div>
+<!-- SECTION ********************************************************** -->
+</section>
+</section>
+</section>
+</section>
+<section id="country-listing" class="level1 unnumbered">
+<h1 class="unnumbered">Country Listing</h1>
+<!-- SECTION ********************************************************** -->
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section id="country-table" class="level2 appendix unnumbered"><h2 class="anchored quarto-appendix-heading">Country Table</h2><div class="quarto-appendix-contents">
+
+<div id="tbl-CountryTable" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-CountryTable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Country Codes
+</figcaption>
+<div aria-describedby="tbl-CountryTable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>ISO3</th>
+<th>ISO2</th>
+<th>LIS</th>
+<th>LWS</th>
+<th>ERFLIS</th>
+<th>EU27</th>
+<th>OECD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Australia</td>
+<td>AUS</td>
+<td>AU</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Austria</td>
+<td>AUT</td>
+<td>AT</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Belgium</td>
+<td>BEL</td>
+<td>BE</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Brazil</td>
+<td>BRA</td>
+<td>BR</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Canada</td>
+<td>CAN</td>
+<td>CA</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Switzerland</td>
+<td>CHE</td>
+<td>CH</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Chile</td>
+<td>CHL</td>
+<td>CL</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>China</td>
+<td>CHN</td>
+<td>CN</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Cote d’Ivoire</td>
+<td>CIV</td>
+<td>CI</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Colombia</td>
+<td>COL</td>
+<td>CO</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Czech Rep</td>
+<td>CZE</td>
+<td>CZ</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Germany</td>
+<td>DEU</td>
+<td>DE</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Denmark</td>
+<td>DNK</td>
+<td>DK</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Dominican Rep</td>
+<td>DOM</td>
+<td>DO</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Egypt</td>
+<td>EGY</td>
+<td>EG</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Spain</td>
+<td>ESP</td>
+<td>ES</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Estonia</td>
+<td>EST</td>
+<td>EE</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Finland</td>
+<td>FIN</td>
+<td>FI</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>France</td>
+<td>FRA</td>
+<td>FR</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>UK</td>
+<td>GBR</td>
+<td>UK</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Georgia</td>
+<td>GEO</td>
+<td>GE</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Greece</td>
+<td>GRC</td>
+<td>GR</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Guatemala</td>
+<td>GTM</td>
+<td>GT</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Hungary</td>
+<td>HUN</td>
+<td>HU</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>India</td>
+<td>IND</td>
+<td>IN</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Ireland</td>
+<td>IRL</td>
+<td>IE</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Iraq</td>
+<td>IRQ</td>
+<td>IQ</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Iceland</td>
+<td>ISL</td>
+<td>IS</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Israel</td>
+<td>ISR</td>
+<td>IL</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Italy</td>
+<td>ITA</td>
+<td>IT</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Jordan</td>
+<td>JOR</td>
+<td>JO</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Japan</td>
+<td>JPN</td>
+<td>JP</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>South Korea</td>
+<td>KOR</td>
+<td>KR</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Lithuania</td>
+<td>LTU</td>
+<td>LT</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Luxembourg</td>
+<td>LUX</td>
+<td>LU</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Mexico</td>
+<td>MEX</td>
+<td>MX</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Mali</td>
+<td>MLI</td>
+<td>ML</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Netherlands</td>
+<td>NLD</td>
+<td>NL</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Norway</td>
+<td>NOR</td>
+<td>NO</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Panama</td>
+<td>PAN</td>
+<td>PA</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Peru</td>
+<td>PER</td>
+<td>PE</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Poland</td>
+<td>POL</td>
+<td>PL</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Paraguay</td>
+<td>PRY</td>
+<td>PY</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Palestine Territories</td>
+<td>PSE</td>
+<td>PS</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Romania</td>
+<td>ROU</td>
+<td>RO</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Russia</td>
+<td>RUS</td>
+<td>RU</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Sudan</td>
+<td>SDN</td>
+<td>SD</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Somalia</td>
+<td>SOM</td>
+<td>SO</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Serbia</td>
+<td>SRB</td>
+<td>RS</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Slovak Rep.</td>
+<td>SVK</td>
+<td>SK</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Slovenia</td>
+<td>SVN</td>
+<td>SI</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Sweden</td>
+<td>SWE</td>
+<td>SE</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Tunisia</td>
+<td>TUN</td>
+<td>TU</td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Taiwan</td>
+<td>TWN</td>
+<td>TW</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Uruguay</td>
+<td>URY</td>
+<td>UY</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>US</td>
+<td>USA</td>
+<td>US</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Viet Nam</td>
+<td>VNM</td>
+<td>VN</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>South Africa</td>
+<td>ZAF</td>
+<td>ZA</td>
+<td>1</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div></section><section id="lis-data-overview" class="level2 appendix unnumbered"><h2 class="anchored quarto-appendix-heading">LIS Data Overview</h2><div class="quarto-appendix-contents">
+
+<div id="fig-LISDataoverview" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-LISDataoverview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: LIS Data Overview
+</figcaption>
+<div aria-describedby="fig-LISDataoverview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/LISDataoverview.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Figure&nbsp;2: LIS Data Overview"><img src="images/LISDataoverview.png" class="img-fluid figure-img"></a>
+</div>
+</figure>
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
